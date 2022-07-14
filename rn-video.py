@@ -3,12 +3,14 @@ import time
 from mutagen.mp4 import MP4
 from sys import argv
 
+
 def my_time_format(time_string):
     '''Отсекаем нули от строкового формата времени'''
     for i in time_string:
         if i in '123456789':
             return time_string
         time_string = time_string[1:]
+
 
 list_video_files = []
 if len(argv) > 1:
@@ -21,7 +23,7 @@ else:
                         if os.path.isfile(item) and item.endswith(('.mp4', '.avi', '.mkw'))]
 
 answer = input(
-    'Будет произведено переименование файлов. Введите "у" или Enter чтобы продолжить: ')
+    'Будет произведено переименование файла(ов). Введите "у" или Enter чтобы продолжить: ')
 
 if answer == 'y' or answer == '':
     for file in list_video_files:
