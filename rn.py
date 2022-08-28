@@ -3,9 +3,9 @@ import time
 from mutagen.mp4 import MP4
 from sys import argv
 
-
 searched_files = ('.mp4', '.avi', '.mkw')
 list_video_files = []
+
 
 def move_files_in_current_dir():
     '''Перемещам все видеофайлы, которые находятся во вложенных папках в текущий каталог'''
@@ -19,7 +19,7 @@ def move_files_in_current_dir():
 def my_time_format(time_string):
     '''Отсекаем нули от строкового формата времени'''
     for i in time_string:
-        if i in '123456789':
+        if (i in '123456789') or (len(time_string) == 4):
             return time_string
         time_string = time_string[1:]
 
@@ -37,8 +37,8 @@ if __name__ == "__main__":
 
     if len(list_video_files) == 0:
         list_video_files = [item
-                        for item in os.listdir()
-                        if os.path.isfile(item) and item.endswith(searched_files)]
+                            for item in os.listdir()
+                            if os.path.isfile(item) and item.endswith(searched_files)]
 
     answer = input(
         'Будет произведено переименование файла(ов). Введите "у" или Enter чтобы продолжить: ')
@@ -52,20 +52,3 @@ if __name__ == "__main__":
                 os.rename(file, file[:-4].capitalize() + ' ' + time_string + file[-4:])
             else:
                 os.rename(file, file[:-4] + ' ' + time_string + file[-4:])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
