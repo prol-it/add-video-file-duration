@@ -46,14 +46,14 @@ Python
 Установить зависимости
 
 ```bash
-  python -m pip install --upgrade pip
+  python3 -m pip install --upgrade pip
   pip install -r requirements.txt
 ```
 
 Перейти в папку со скриптом. Выполнить в терминале:
 
 ```
-python rn.py [параметры]
+python3 rn.py [параметры]
 ```
 
 
