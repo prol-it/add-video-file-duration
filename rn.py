@@ -6,6 +6,9 @@ from sys import argv
 searched_files = ('.mp4', '.avi', '.mkw')
 list_video_files = []
 
+'''
+Dockstring heare
+'''
 
 def move_files_in_current_dir():
     '''Перемещам все видеофайлы, которые находятся во вложенных папках в текущий каталог'''
@@ -24,10 +27,10 @@ def my_time_format(time_string):
         time_string = time_string[1:]
 
 
-def file_contains_duration(file):
+def file_contains_duration(file_name):
     '''Смотрим, может быть файл уже содержит продолжительность и его не нужно второй раз переименовывать'''
 
-    if file[-6:-4].isdigit() and file[-7:-6] == '-':
+    if file_name[-2:].isdigit() and file_name[-3:-2] == '-':
         return True
 
     return False
@@ -40,7 +43,7 @@ if __name__ == "__main__":
 
     if answer == 'y' or answer == '':
 
-        if '-d' in argv:
+        if '-dir' in argv:
             move_files_in_current_dir()
 
         if '-f' in argv:
@@ -58,9 +61,10 @@ if __name__ == "__main__":
             file_duration_seconds = int(MP4(file).info.length)
             time_string = time.strftime("%H-%M-%S", time.gmtime(file_duration_seconds))
             time_string = my_time_format(time_string)
-            file_contains_duration(file)
-            if not file_contains_duration(file):
-                if '-c' in argv:
-                    os.rename(file, file[:-4].capitalize() + ' ' + time_string + file[-4:])
-                else:
-                    os.rename(file, file[:-4] + ' ' + time_string + file[-4:])
+            file_name = file[:-4]
+            file_extension = file[-4:]
+            if '-c' in argv:
+                file_name = file_name.capitalize()
+
+            if not file_contains_duration(file_name):
+                os.rename(file, file_name + ' ' + time_string + file_extension)
