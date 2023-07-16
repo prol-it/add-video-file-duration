@@ -38,6 +38,18 @@ def change_bracket(file_name):
     return file_name
 
 
+def print_usage():
+    '''
+    Print usage information for the script.
+    '''
+    print('Usage: python script.py [OPTIONS]')
+    print('OPTIONS:')
+    print('  -dir         Move all video files from subfolders to the current directory')
+    print('  -f FILENAMES Specify the list of video files to process')
+    print('  -c           Capitalize the file names')
+    print('  -b           Remove information in brackets from file names')
+
+
 answer = input('The file(s) will be renamed. Type "y" or Enter to continue: ')
 
 if answer == 'y' or answer == '':
@@ -79,3 +91,5 @@ if answer == 'y' or answer == '':
 
     total_duration_string = seconds_to_string_format(total_duration)
     print(f'Total time of video files: {total_duration_string}')
+else:
+    print_usage()
