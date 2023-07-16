@@ -51,15 +51,22 @@ Navigate to the script directory. Run the following command in the terminal:
 ```
 python3 rn.py [options]  
 ```
-
 ## Making the Script Executable from Any Directory without Specifying the Python Command (Linux Instructions)  
 
 1. The file should have a correct shebang line at the top, indicating the path to the Python interpreter, for example:
-`#!/usr/bin/python3`
+```
+#!/usr/bin/python3
+```
 To find the path to your Python interpreter on your computer, you can run the following command in the terminal:
-`which python`
+```
+which python
+```
 2. The file should be located in one of the directories listed in $PATH. You can find the directories by executing the following command in the terminal:  
-`$ echo $PATH`
+```
+$ echo $PATH
+```
 The file should be executable. Run the following command in the terminal:
-`$ chmod +x rn.py`
+```
+$ chmod +x rn.py
+```
 Feel free to modify and enhance the script to meet your specific needs!
