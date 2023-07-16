@@ -1,77 +1,65 @@
-# Add video file duration
+# Video File Renamer  
 
-## Краткое описание:
+This script renames video files by adding their duration to the file name in the format HH-MM-SS.  
+  
+## Description  
 
-Переименовывает видеофайл путем добавления к названию файла его продолжительность.
+The script renames video file(s) by appending their duration to the file name in the format HH-MM-SS. For example:  
+  
+`My video 1-23-06.mp4  `
+  
+Command-line options:  
 
-## Стек:
+| Option             | Description                                                                                                                                                                                                                      |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -f 'file1' 'file2' | Processes only the specified files after the '-f' option instead of all files in the current directory.                                                                                                                          |
+| -c                 | Converts the file name to title case (the first letter capitalized, the rest lowercase).                                                                                                                                         |
+| -dir               | Moves all files from subfolders to the current directory (where the script is run from).                                                                                                                                         |
+| -b                 | Removes unnecessary information in parentheses, leaving only the video quality information. For example, from <br/>'Django REST Framework (720p_25fps_H264-192kbit_AAC).mp4' it becomes <br/>'Django REST Framework (720p).mp4'. |
 
-Python
 
-## Полное описание:
+## Running the Project in Development Mode  
 
-Скрипт переименовывает видеофайл(ы) - добавляет к названию файла его продолжительность в формате HH-MM-SS. К примеру:
-
-`My video 1-23-06.mp4`
-
-Передаваемые параметры:
-
-| Параметр           | Описание                                                                                                   |
-|--------------------|------------------------------------------------------------------------------------------------------------|
-| -f 'file1' 'file2' | Обрабатывает не все файлы в текущем каталоге (этот режим по умолчанию), а только указанные после ключа '-f'. |
-| -c                 | Конвертирует название файла в вид: Первая буква заглавная, остальные строчные                              |
-| -dir               | Переносит все файлы из вложенных папок в текущую директорию (откуда запустили скрипт)                      |
-| -b                 | Удаляет лишнюю информацию в скобках, оставляя только информацию о качестве видео. Например из <br/>'Django REST Framework (720p_25fps_H264-192kbit_AAC).mp4' получаем <br/>'Django REST Framework (720p).mp4' |
-
-## Запуск проекта в dev-режиме
-
-Клонировать репозиторий
-
-```bash
-  git clone git@github.com:prol-it/add-video-file-duration.git
-```
-
-Перейти в папку проекта
-
-```bash
-  cd add-video-file-duration
-```
-
-Создать и активировать виртуальное окружение
-
-```bash
-  python3 -m venv venv
-  source venv/bin/activate
-```
-
-Установить зависимости
-
-```bash
-  python3 -m pip install --upgrade pip
-  pip install -r requirements.txt
-```
-
-Перейти в папку со скриптом. Выполнить в терминале:
+Clone the repository:  
 
 ```
-python3 rn.py [параметры]
+git clone git@github.com:prol-it/add-video-file-duration.git  
 ```
 
+Navigate to the project directory:  
 
-## Для запуска скрипта из любой директории без указания команды python (инструкция для Linux):
+```
+cd add-video-file-duration  
+```
 
-1. Файл должен содержать корректную shebang строку на самом верху - путь до интерпретатора Python, например:
+Create and activate a virtual environment:
 
-	`#!/usr/bin/python3`
+```
+python3 -m venv venv  
+source venv/bin/activate  
+```  
 
-	Чтобы найти путь к вашему интерпретатору python на вашем компьютере, вы можете запустить команду в терминале:
+Install the dependencies:
 
-	`which python`
+```
+python3 -m pip install --upgrade pip  
+pip install -r requirements.txt  
+```  
 
-2. Файл должен находиться в одной из директорий, указанной в $PATH. Узнать путь можно выполнив в терминале:
+Navigate to the script directory. Run the following command in the terminal:
 
-	`$ echo $PATH`
+```
+python3 rn.py [options]  
+```
 
-3. Файл должен быть исполняемым. Выполняем в терминале:
+## Making the Script Executable from Any Directory without Specifying the Python Command (Linux Instructions)  
 
-	`$ chmod +x rn.py`
+1. The file should have a correct shebang line at the top, indicating the path to the Python interpreter, for example:
+`#!/usr/bin/python3`
+To find the path to your Python interpreter on your computer, you can run the following command in the terminal:
+`which python`
+2. The file should be located in one of the directories listed in $PATH. You can find the directories by executing the following command in the terminal:  
+`$ echo $PATH`
+The file should be executable. Run the following command in the terminal:
+`$ chmod +x rn.py`
+Feel free to modify and enhance the script to meet your specific needs!
