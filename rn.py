@@ -3,7 +3,7 @@ import time
 from mutagen.mp4 import MP4
 from sys import argv
 
-SEARCHED_FILES = ('.mp4', '.avi', '.mkw')
+SEARCHED_FILES = ('.mp4', '.avi', '.mkw', '.mp3', '.m4a')
 
 
 def move_files_in_current_dir():
@@ -30,12 +30,20 @@ def change_bracket(file_name):
     '''
     Remove all information in brackets except for the resolution of the video file.
     '''
-    brackets_start_position = file_name.rfind('(')
-    brackets_end_position = file_name.rfind(')')
-    file_quality_position = file_name.find('p', brackets_start_position, brackets_start_position + 7)
-    if brackets_start_position != -1 and file_quality_position != -1:
-        file_name = file_name[:file_quality_position + 1] + ')' + file_name[brackets_end_position + 1:]
-    return file_name
+    parentheses_start_position = file_name.rfind('(')
+    parentheses_end_position = file_name.rfind(')')
+    brackets_start_position = file_name.rfind('[')
+    brackets_end_position = file_name.rfind(']')
+
+    file_quality_position = file_name.find('p', parentheses_start_position, parentheses_start_position + 7)
+
+    if parentheses_start_position != -1 and parentheses_end_position != -1 and file_quality_position != -1:
+        file_name = file_name[:file_quality_position + 1] + ')' + file_name[parentheses_end_position + 1:]
+
+    if brackets_start_position != -1 and brackets_end_position != -1:
+        file_name = file_name[: brackets_start_position] + file_name[brackets_end_position + 1:]
+
+    return file_name.strip()
 
 
 def print_usage():
